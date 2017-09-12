@@ -13,7 +13,8 @@ import com.hencoder.hencoderpracticedraw6.R;
 public class Practice02Rotation extends RelativeLayout {
     Button animateBt;
     ImageView imageView;
-
+    int mCount = 4;
+    int mCur = 1;
     public Practice02Rotation(Context context) {
         super(context);
     }
@@ -36,6 +37,23 @@ public class Practice02Rotation extends RelativeLayout {
         animateBt.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(final View v) {
+                switch (mCur){
+                    case 1:
+                        imageView.animate().rotationX(180);
+                        break;
+                    case 2:
+                        imageView.animate().rotationX(0);
+                        break;
+                    case 3:
+                        imageView.animate().rotationY(180);
+                        break;
+                    case 4:
+                        imageView.animate().rotationY(0);
+                        break;
+                }
+                mCur++;
+                if(mCur>mCount)
+                    mCur = 1;
                 // // TODO 在这里处理点击事件，通过 View.animate().rotation/X/Y() 来让 View 旋转
             }
         });

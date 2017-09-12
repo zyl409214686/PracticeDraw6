@@ -21,7 +21,7 @@ import static com.hencoder.hencoderpracticedraw6.Utils.dpToPixel;
 public class Practice01Translation extends RelativeLayout {
     Button animateBt;
     ImageView imageView;
-
+    int mcount;
     public Practice01Translation(Context context) {
         super(context);
     }
@@ -46,9 +46,38 @@ public class Practice01Translation extends RelativeLayout {
         }
 
         animateBt.setOnClickListener(new OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(final View v) {
                 // TODO 在这里处理点击事件，通过 View.animate().translationX/Y/Z() 来让 View 平移
+                if(mcount==0) {
+                    imageView.animate().translationX(dpToPixel(200));
+                    mcount = 1;
+                }
+                else if(mcount==1){
+                    imageView.animate().translationX(dpToPixel(0));
+                    mcount = 2;
+                }
+                else if(mcount==2){
+                    imageView.animate().translationY(dpToPixel(200));
+                    mcount = 3;
+                }
+                else if(mcount==3){
+                    imageView.animate().translationY(dpToPixel(0));
+                    mcount = 4;
+                }
+                else if(mcount==4){
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        imageView.animate().translationZ(dpToPixel(10));
+                    }
+                    mcount = 5;
+                }
+                else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        imageView.animate().translationZ(dpToPixel(0));
+                    }
+                    mcount = 0;
+                }
             }
         });
     }
